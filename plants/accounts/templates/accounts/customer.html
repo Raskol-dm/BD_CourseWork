@@ -1,0 +1,69 @@
+
+{% extends 'accounts/main.html' %}
+<!-- Унаследовали шаблон -->
+
+<!-- Место где будет использоваться дочерний шаблон -->
+{% block content %}
+
+    <br>
+    <!-- Наши 3 столбца-->
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Customer:</h5>
+                <hr>
+                <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
+                <a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
+    
+            </div>
+        </div>
+    
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Contact Information</h5>
+                <hr>
+                <p>Name: {{customer.name}}</p>
+                <p>Email: {{customer.email}}</p>
+                <p>Phone: {{customer.phone}}</p>
+                <p>Balance: {{customer.balance}}</p>
+            </div>
+        </div>
+    
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Your Bets</h5>
+                <hr>
+                <h1 style="text-align: center;padding: 10px">{{orders_count}}</h1>
+            </div>
+        </div>
+    </div>
+    
+    
+    <br>
+    
+    <!-- Таблица-->
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Match</th>
+                        <th>Your Bet</th>
+                        <th>Date Orderd</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for order in orders %}
+                    
+                    <tr>
+                        <td>{{order.fight.name}}</td>
+                        <td>{{order.price}}</td>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.status}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
